@@ -1,0 +1,34 @@
+  
+version: 2 
+jobs:
+  build:
+    working_directory: ~/tmp
+    docker:
+      - image: circleci/node:7
+    steps:
+      - checkout
+      - restore_cache:
+          key: node-v1-{{ checksum "package.json"}}-{{ arch }}
+
+      - run: npm install
+
+      - save_cache:
+          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+          paths:
+            - node_modules
+            
+      - run:
+          name: node tests
+          command:
+            mkdir -p test-results/node
+            npm run test
+          environment:
+            NPM_TEST_OUTPUT: test-results/node/node-tests.xml
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - node_modules
+
+      - store_test_results:
+          path: test-results
