@@ -4,8 +4,10 @@
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        echo "Username: " . $username . "<br />";
-        echo "Password: " . $password;
+        if($username && $password) {
+            echo "Username: " . $username . "<br />";
+            echo "Password: " . $password;
+        }
     }
 
 ?>
