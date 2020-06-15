@@ -1,13 +1,26 @@
 <?php 
 
+    $servername = "mysql";
+    $username = "user";
+    $password = "pwd";
+
     if(isset($_POST['submit'])) {
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        if($username && $password) {
-            echo "Username: " . $username . "<br />";
-            echo "Password: " . $password;
+        $connection = new PDO("mysql:host=$servername;dbname=app_db", $username, $password);
+        if($connection) {
+            echo "You are connected";
+        } else {
+            die("Failed to connect to MySQL database.");
         }
+
+        // if($username && $password) {
+        //     echo "Username: " . $username . "<br />";
+        //     echo "Password: " . $password;
+        // } else {
+        //     echo "Enter a valid username and password.";
+        // }
     }
 
 ?>
