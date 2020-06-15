@@ -1,19 +1,25 @@
 <?php 
 
     $servername = "mysql";
-    $username = "user";
+    $username = "username";
     $password = "pwd";
 
     if(isset($_POST['submit'])) {
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        $connection = new PDO("mysql:host=$servername;dbname=app_db", $username, $password);
-        if($connection) {
-            echo "You are connected";
-        } else {
-            die("Failed to connect to MySQL database.");
+        try {
+            $connection = new PDO(
+                "mysql:host=$servername;dbname=app_db", 
+                $username, 
+                $password, 
+                array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            die(json_encode(array('outcome' => true)));
+
+        } catch(PDOException $ex) {
+            die(json_encode(array('outcome' => false, 'message' => 'Unable to connect')));
         }
+
 
         // if($username && $password) {
         //     echo "Username: " . $username . "<br />";
