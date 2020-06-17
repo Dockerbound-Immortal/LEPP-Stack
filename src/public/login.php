@@ -1,8 +1,6 @@
 <?php 
 
-    $servername = "mysql";
-    $username = "username";
-    $password = "pwd";
+
 
     if(isset($_POST['submit'])) {
         $username = $_POST['username'];
