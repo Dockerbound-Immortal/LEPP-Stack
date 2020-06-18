@@ -1,6 +1,11 @@
 # docker-compose-laravel
-Simplified LEMP stack for local development.
+Simplified LEPP stack for local development.
 
+# Note
+Create a docker volume called 'data-postgres' before spinning up the container
+
+This is a workaround for an issue in which postgres permissions no longer allow
+for the data to be persisted over volumes.
 
 ## Usage
 
