@@ -86,4 +86,4 @@ services:
 
 volumes:
   data-postgres:
-    driver: local
+    external: true
